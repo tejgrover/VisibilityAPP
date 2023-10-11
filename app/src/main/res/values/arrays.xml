@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_list">
+        <item>2024 CS538</item>
+        <item>2024 CS539</item>
+        <item>2024 CS540</item>
+        <item>2024 CS541</item>
+        <item>2024 CS542</item>
+    </string-array>
+</resources>
