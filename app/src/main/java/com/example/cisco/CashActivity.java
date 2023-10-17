@@ -121,11 +121,11 @@ public class CashActivity extends AppCompatActivity {
 
     private List<CashdataModel> getList(){
         List<CashdataModel> order_list = new ArrayList<>();
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14"));
+        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
         return order_list;
     }
 

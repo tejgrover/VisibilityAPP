@@ -33,6 +33,14 @@
             android:padding="10dp"
             android:layout_column="1"
             />
+        <TextView
+            android:id="@+id/backlog"
+            android:textSize="16dp"
+            android:fontFamily="@font/gabarito"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
     </TableRow>
 
 </TableLayout>

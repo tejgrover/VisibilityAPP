@@ -7,26 +7,32 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    //Api data
-    TextView paymentdate, totalpayment;
-    String url;
+    // database
+    private Button btn;
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private Connection connecton;
+    private EditText editText;
+    public String UserId;
+    private TextView paymentdate,totalpayment;
+
+
 
     //navigation
     DrawerLayout drawerLayout;
@@ -38,33 +44,34 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
 
 
-        //api data fetch
+        //database
+        editText=findViewById(R.id.userid);
         paymentdate = findViewById(R.id.paymentdate);
         totalpayment = findViewById(R.id.totalpayment);
-        url = "https://worldtimeapi.org/api/timezone/Asia/Kolkata";
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        btn = findViewById(R.id.useridbtn);
+        StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(threadPolicy);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(JSONObject response) {
-               try {
-                   String datetime = response.getString("datetime");
-                   String date = datetime.split("T")[0];
-
-                   String totalpay = response.getString("raw_offset");
-                   paymentdate.setText(date);
-                   totalpayment.setText(totalpay);
-               } catch (Exception e) {
-               }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
+            public void onClick(View view) {
+                connecton = buttonConnectToOracleDB();
+                UserId =editText.getText().toString();
+                try {
+                    if (connecton != null) {
+                        Statement statement = connecton.createStatement();
+                        ResultSet resultSet = statement.executeQuery("select GS_END_DATE,GOAL_VALUE from APPS.e2e_calc_payment_detail where employee_id='"+ UserId +"' and rate_factor='1.64182' order by period_code desc");
+                        while (resultSet.next()) {
+                            String datetime = resultSet.getString(1);
+                            String date = datetime.split(" ")[0];
+                            paymentdate.setText(date);
+                            totalpayment.setText(resultSet.getString(2));
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.e("Error", e.getMessage());
+                }
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(request);
-//        Volley.newRequestQueue(this).add(request);
 
         //navigation
         drawerLayout = findViewById(R.id.drawerlayout);
@@ -139,4 +146,20 @@ public class PaymentActivity extends AppCompatActivity {
         super.onPause();
         closeDrawer(drawerLayout);
     }
+
+
+    //database
+    public Connection buttonConnectToOracleDB() {
+        try {
+            Class.forName(DRIVER);
+            this.connecton = DriverManager.getConnection("jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbs-pdv-vm-2020.cisco.com)(PORT=1576))(CONNECT_DATA=(SERVICE_NAME=DV1G2C_SRVC_OTH.cisco.com)(Server=Dedicated)))", "APPS", "B1UE2UTH");
+
+            Toast.makeText(this, "CONNECTED", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            paymentdate.setText(e.toString());
+        }
+
+        return connecton;
+    }
+
 }

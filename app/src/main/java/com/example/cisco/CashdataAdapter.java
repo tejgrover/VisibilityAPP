@@ -36,6 +36,7 @@ public class CashdataAdapter extends RecyclerView.Adapter<CashdataAdapter.ViewHo
             holder.goaldata.setText(model.getGoal());
             holder.categorydata.setText(model.getCategory());
             holder.bookingdata.setText(model.getBooking());
+            holder.backlogdata.setText(model.getBacklog());
         } else {
             return ;
         }
@@ -47,13 +48,14 @@ public class CashdataAdapter extends RecyclerView.Adapter<CashdataAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView categorydata,goaldata,bookingdata;
+        TextView categorydata,goaldata,bookingdata,backlogdata;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categorydata = itemView.findViewById(R.id.categorydata);
             goaldata = itemView.findViewById(R.id.goaldata);
             bookingdata = itemView.findViewById(R.id.bookingdata);
+            backlogdata = itemView.findViewById(R.id.backlog);
         }
     }
 }
