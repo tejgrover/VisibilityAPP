@@ -38,7 +38,6 @@ public class CashActivity extends AppCompatActivity {
     CashdataAdapter adapter;
 
     // database
-    private Button btn;
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private Connection connecton;
 
