@@ -8,15 +8,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +37,18 @@ public class CashActivity extends AppCompatActivity {
     RecyclerView dataentry;
     CashdataAdapter adapter;
 
+    // database
+    private Button btn;
+    private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private Connection connecton;
+    private EditText editText;
+    public String UserId;
+
     //drop down menu
     String[] item = {"FY24","FY25","FY26","FY27"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
+
 
     //navigation
     DrawerLayout drawerLayout;
@@ -41,11 +59,30 @@ public class CashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cash);
 
+
+
+        //database
+//        editText=findViewById(R.id.userid);
+//        btn = findViewById(R.id.useridbtn);
+        
+        StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(threadPolicy);
+
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                 connecton = buttonConnectToOracleDB();
+//            }
+//        });
+
+
         //RecyclerView
         dataentry = findViewById(R.id.dataentry);
         setRecyclerView();
 
 
+
+        //navigation
         drawerLayout = findViewById(R.id.drawerlayout);
         menu = findViewById(R.id.menu);
         goal_attainment = findViewById(R.id.goalattainment);
@@ -119,14 +156,47 @@ public class CashActivity extends AppCompatActivity {
         dataentry.setAdapter(adapter);
     }
 
-    private List<CashdataModel> getList(){
-        List<CashdataModel> order_list = new ArrayList<>();
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+    private ArrayList<CashdataModel> getList(){
+//        List<CashdataModel> order_list = new ArrayList<>();
+//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
+//        return order_list;
+
+        ArrayList<CashdataModel> order_list = new ArrayList<>();
+        connecton = buttonConnectToOracleDB();
+        try {
+            if (connecton!=null) {
+                Statement statement = connecton.createStatement();
+                ResultSet resultSet = statement.executeQuery("select employee_id,plan_id,plan_title,YTD_PAID from APPS.e2e_calc_payment_detail where employee_id='455284' and plan_title='2022 CSP04' and plan_id='421006' and period_code='FY23P2' order by period_code desc");
+                while (resultSet.next()) {
+                    String category = resultSet.getString(1 );
+                    String goal = resultSet.getString(2 );
+                    String booking = resultSet.getString(3 );
+                    String backlog = resultSet.getString(4 );
+                    order_list.add(new CashdataModel(category, goal,booking,backlog));
+                }
+            }
+        }
+        catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
         return order_list;
+    }
+
+
+    //database
+    public Connection buttonConnectToOracleDB() {
+        try {
+            Class.forName(DRIVER);
+            this.connecton = DriverManager.getConnection("jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dbs-pdv-vm-2020.cisco.com)(PORT=1576))(CONNECT_DATA=(SERVICE_NAME=DV1G2C_SRVC_OTH.cisco.com)(Server=Dedicated)))", "APPS", "B1UE2UTH");
+            Toast.makeText(this, "CONNECTED", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
+        return connecton;
     }
 
 
