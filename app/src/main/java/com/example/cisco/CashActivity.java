@@ -41,8 +41,6 @@ public class CashActivity extends AppCompatActivity {
     private Button btn;
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private Connection connecton;
-    private EditText editText;
-    public String UserId;
 
     //drop down menu
     String[] item = {"FY24","FY25","FY26","FY27"};
@@ -59,28 +57,12 @@ public class CashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cash);
 
-
-
         //database
-//        editText=findViewById(R.id.userid);
-//        btn = findViewById(R.id.useridbtn);
-        
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
 
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                 connecton = buttonConnectToOracleDB();
-//            }
-//        });
-
-
         //RecyclerView
         dataentry = findViewById(R.id.dataentry);
-        setRecyclerView();
-
-
 
         //navigation
         drawerLayout = findViewById(R.id.drawerlayout);
@@ -143,7 +125,8 @@ public class CashActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(CashActivity.this,"Item: "+ item,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(CashActivity.this,"Item: "+ item,Toast.LENGTH_SHORT).show();
+                setRecyclerView();
             }
         });
     }
@@ -156,15 +139,9 @@ public class CashActivity extends AppCompatActivity {
         dataentry.setAdapter(adapter);
     }
 
-    private ArrayList<CashdataModel> getList(){
-//        List<CashdataModel> order_list = new ArrayList<>();
-//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-//        order_list.add(new CashdataModel("PRD & SVC","1.15B","127.632.298.14","127.632.298.14"));
-//        return order_list;
 
+    //database
+    private ArrayList<CashdataModel> getList(){
         ArrayList<CashdataModel> order_list = new ArrayList<>();
         connecton = buttonConnectToOracleDB();
         try {
