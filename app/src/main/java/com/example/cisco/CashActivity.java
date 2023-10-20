@@ -32,19 +32,23 @@ import java.util.List;
 
 public class CashActivity extends AppCompatActivity {
 
-
     //Recyclerview
     RecyclerView dataentry;
     CashdataAdapter adapter;
+    LinearLayout tablelayout;
 
     // database
+    private Button btn;
     private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
     private Connection connecton;
+    private EditText editText;
+    public String UserId;
 
     //drop down menu
     String[] item = {"FY24","FY25","FY26","FY27"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
+    LinearLayout droplayout;
 
 
     //navigation
@@ -57,11 +61,23 @@ public class CashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cash);
 
         //database
+        droplayout=findViewById(R.id.droplayout);
+        editText=findViewById(R.id.userid1);
+        btn = findViewById(R.id.useridbtn1);
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                droplayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+
 
         //RecyclerView
         dataentry = findViewById(R.id.dataentry);
+        tablelayout = findViewById(R.id.tableid);
 
         //navigation
         drawerLayout = findViewById(R.id.drawerlayout);
@@ -124,8 +140,9 @@ public class CashActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = adapterView.getItemAtPosition(i).toString();
-//                Toast.makeText(CashActivity.this,"Item: "+ item,Toast.LENGTH_SHORT).show();
+//              Toast.makeText(CashActivity.this,"Item: "+ item,Toast.LENGTH_SHORT).show();
                 setRecyclerView();
+                tablelayout.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -143,16 +160,21 @@ public class CashActivity extends AppCompatActivity {
     private ArrayList<CashdataModel> getList(){
         ArrayList<CashdataModel> order_list = new ArrayList<>();
         connecton = buttonConnectToOracleDB();
+        UserId = editText.getText().toString();
         try {
             if (connecton!=null) {
                 Statement statement = connecton.createStatement();
-                ResultSet resultSet = statement.executeQuery("select employee_id,plan_id,plan_title,YTD_PAID from APPS.e2e_calc_payment_detail where employee_id='455284' and plan_title='2022 CSP04' and plan_id='421006' and period_code='FY23P2' order by period_code desc");
+                ResultSet resultSet = statement.executeQuery("select employee_id,plan_id,plan_title,YTD_PAID,allocation_id,allocation_descr,bonus_type_code,achievement_rev from APPS.e2e_calc_payment_detail where employee_id='"+ UserId +"' and plan_title='2022 CSP04' and plan_id='421006' and period_code='FY23P2' order by period_code desc");
                 while (resultSet.next()) {
                     String category = resultSet.getString(1 );
                     String goal = resultSet.getString(2 );
                     String booking = resultSet.getString(3 );
-                    String backlog = resultSet.getString(4 );
-                    order_list.add(new CashdataModel(category, goal,booking,backlog));
+                    String noncomm = resultSet.getString(4);
+                    String backlog = resultSet.getString(5 );
+                    String revoriginal = resultSet.getString(6 );
+                    String revmultiplied = resultSet.getString(7 );
+                    String revattainment = resultSet.getString(8 );
+                    order_list.add(new CashdataModel(category, goal,booking,noncomm,backlog,revoriginal,revmultiplied,revattainment));
                 }
             }
         }

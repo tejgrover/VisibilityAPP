@@ -33,7 +33,39 @@
             android:layout_column="1"
             />
         <TextView
+            android:id="@+id/noncomm"
+            android:textSize="16dp"
+            android:fontFamily="@font/gabarito"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
+        <TextView
             android:id="@+id/backlog"
+            android:textSize="16dp"
+            android:fontFamily="@font/gabarito"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
+        <TextView
+            android:id="@+id/revoriginal"
+            android:textSize="16dp"
+            android:fontFamily="@font/gabarito"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
+        <TextView
+            android:id="@+id/revmultiplied"
+            android:textSize="16dp"
+            android:fontFamily="@font/gabarito"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_column="1"
+            />
+        <TextView
+            android:id="@+id/revattainment"
             android:textSize="16dp"
             android:fontFamily="@font/gabarito"
             android:gravity="center"

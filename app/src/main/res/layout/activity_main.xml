@@ -76,6 +76,7 @@
             app:boxCornerRadiusTopEnd="10sp"
             app:boxCornerRadiusTopStart="10sp"
             app:boxStrokeWidth="0sp"
+            app:boxBackgroundColor="#ebebeb"
             app:boxStrokeWidthFocused="0sp"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             >

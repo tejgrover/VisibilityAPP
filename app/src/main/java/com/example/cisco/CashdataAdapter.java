@@ -36,7 +36,11 @@ public class CashdataAdapter extends RecyclerView.Adapter<CashdataAdapter.ViewHo
             holder.goaldata.setText(model.getGoal());
             holder.categorydata.setText(model.getCategory());
             holder.bookingdata.setText(model.getBooking());
+            holder.noncommdata.setText(model.getNoncomm());
             holder.backlogdata.setText(model.getBacklog());
+            holder.revoriginaldata.setText(model.getRevoriginal());
+            holder.revmultiplieddata.setText(model.getRevmultiplied());
+            holder.revattainmentdata.setText(model.getRevattainment());
         } else {
             return ;
         }
@@ -48,14 +52,18 @@ public class CashdataAdapter extends RecyclerView.Adapter<CashdataAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView categorydata,goaldata,bookingdata,backlogdata;
+        TextView categorydata,goaldata,bookingdata,noncommdata,backlogdata,revoriginaldata,revmultiplieddata,revattainmentdata;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             categorydata = itemView.findViewById(R.id.categorydata);
             goaldata = itemView.findViewById(R.id.goaldata);
             bookingdata = itemView.findViewById(R.id.bookingdata);
+            noncommdata = itemView.findViewById(R.id.noncomm);
             backlogdata = itemView.findViewById(R.id.backlog);
+            revoriginaldata = itemView.findViewById(R.id.revoriginal);
+            revmultiplieddata = itemView.findViewById(R.id.revmultiplied);
+            revattainmentdata = itemView.findViewById(R.id.revattainment);
         }
     }
 }

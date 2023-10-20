@@ -32,18 +32,53 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="As of October, 7th 2023"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/gabarito"
-                android:textColor="#676767" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:text="As of October, 7th 2023"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:fontFamily="@font/gabarito"-->
+<!--                android:textColor="#676767" />-->
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            >
+
+            <EditText
+                android:id="@+id/userid1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="Enter user id"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:layout_gravity="center"
+                android:paddingBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_shape"
+                />
+            <Button
+                android:id="@+id/useridbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:text="Go"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/droplayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -55,11 +90,10 @@
                 android:paddingRight="10dp"
                 android:fontFamily="@font/gabarito"
                 android:gravity="center_vertical"
-                android:textColor="#313131" />
+                android:textColor="#313131"/>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
                 android:hint="@string/select"
                 app:boxCornerRadiusBottomEnd="10sp"
@@ -67,6 +101,7 @@
                 app:boxCornerRadiusTopEnd="10sp"
                 app:boxCornerRadiusTopStart="10sp"
                 app:boxStrokeWidth="0sp"
+                app:boxBackgroundColor="#ebebeb"
                 app:boxStrokeWidthFocused="0sp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 >
@@ -78,44 +113,7 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Goal sheet:"
-                android:paddingRight="5dp"
-                android:textColor="#313131"
-                android:fontFamily="@font/gabarito" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="2024 CS538"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/gabarito"
-                android:textColor="#338ED0" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="| Data range:"
-                android:layout_marginLeft="10dp"
-                android:paddingRight="5dp"
-                android:textColor="#313131"
-                android:fontFamily="@font/gabarito" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="30-Jul to 27-Jul"
-                android:gravity="center_vertical"
-                android:fontFamily="@font/gabarito"
-                android:textColor="#676767" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,12 +121,51 @@
             android:orientation="vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
+            android:visibility="invisible"
+            android:id="@+id/tableid"
             >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Goal sheet:"
+                    android:paddingRight="5dp"
+                    android:textColor="#313131"
+                    android:fontFamily="@font/gabarito" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="2024 CS538"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/gabarito"
+                    android:textColor="#338ED0" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="| Data range:"
+                    android:layout_marginLeft="10dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#313131"
+                    android:fontFamily="@font/gabarito" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="30-Jul to 27-Jul"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/gabarito"
+                    android:textColor="#676767" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Core Plan Elements"
+                android:layout_marginTop="20dp"
                 android:paddingRight="10dp"
                 android:textColor="#313131"
                 android:fontFamily="@font/gabarito"
@@ -179,7 +216,43 @@
                             android:layout_column="1"
                             />
                         <TextView
+                            android:text="Non-Comm Bookings"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/gabarito"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_column="1"
+                            />
+                        <TextView
                             android:text="Backlog"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/gabarito"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_column="1"
+                            />
+                        <TextView
+                            android:text="Revenue(Original)"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/gabarito"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_column="1"
+                            />
+                        <TextView
+                            android:text="Revenue(Multiplied)"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/gabarito"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:layout_column="1"
+                            />
+                        <TextView
+                            android:text="Revenue Attainment"
                             android:textSize="16dp"
                             android:textStyle="bold"
                             android:fontFamily="@font/gabarito"
