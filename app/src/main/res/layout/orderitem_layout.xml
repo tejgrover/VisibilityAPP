@@ -7,70 +7,96 @@
 
     <TableRow
         android:id="@+id/rowid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         >
+
         <TextView
             android:id="@+id/categorydata"
-            android:textSize="16dp"
-            android:fontFamily="@font/gabarito"
-            android:padding="10dp"
-            android:gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:layout_column="1"
-            />
+            android:layout_weight="0.5"
+            android:fontFamily="@font/gabarito"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="16dp" />
+
         <TextView
             android:id="@+id/goaldata"
-            android:textSize="16dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_weight="0.5"
             android:fontFamily="@font/gabarito"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
-            />
+            android:textSize="16dp" />
         <TextView
             android:id="@+id/bookingdata"
             android:textSize="16dp"
             android:fontFamily="@font/gabarito"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
+            android:layout_column="3"
+            android:layout_weight="0.5"
             />
+
         <TextView
             android:id="@+id/noncomm"
-            android:textSize="16dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_column="4"
+            android:layout_weight="0.5"
             android:fontFamily="@font/gabarito"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
-            />
+            android:textSize="16dp" />
         <TextView
             android:id="@+id/backlog"
             android:textSize="16dp"
             android:fontFamily="@font/gabarito"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
+            android:layout_column="5"
+            android:layout_weight="0.5"
             />
         <TextView
             android:id="@+id/revoriginal"
             android:textSize="16dp"
             android:fontFamily="@font/gabarito"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
+            android:layout_column="6"
+            android:layout_weight="0.5"
             />
         <TextView
             android:id="@+id/revmultiplied"
             android:textSize="16dp"
             android:fontFamily="@font/gabarito"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
+            android:layout_column="7"
+            android:layout_weight="0.5"
             />
         <TextView
             android:id="@+id/revattainment"
             android:textSize="16dp"
             android:fontFamily="@font/gabarito"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:layout_column="1"
+            android:layout_column="8"
+            android:layout_weight="0.5"
             />
     </TableRow>
 

@@ -16,36 +16,36 @@
 
 
         <LinearLayout
+            android:id="@+id/user_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="40dp"
             android:layout_marginLeft="25dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="25dp"
-            >
+            android:orientation="horizontal"
+            tools:visibility="visible">
 
             <EditText
                 android:id="@+id/userid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="Enter user id"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
                 android:layout_gravity="center"
-                android:paddingBottom="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_shape"
-                />
+                android:ems="10"
+                android:hint="Enter user id"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+
             <Button
                 android:id="@+id/useridbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:text="Go"
-                />
+                android:text="Go" />
 
         </LinearLayout>
 
@@ -53,19 +53,17 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             app:cardCornerRadius="20dp"
-            app:cardElevation="30dp"
-            >
+            app:cardElevation="30dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -77,61 +75,61 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    >
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Payment Date"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/gabarito"
-                        android:textColor="@color/white"
-                        android:textSize="15sp"
                         android:layout_weight="1"
-                        />
+                        android:fontFamily="@font/gabarito"
+                        android:text="Payment Date"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Estimated Total Payment"
-                        android:textStyle="bold"
                         android:fontFamily="@font/gabarito"
+                        android:text="Estimated Total Payment"
                         android:textColor="@color/white"
                         android:textSize="15sp"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    >
+                    android:orientation="horizontal">
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="YYYY-MM-DD"
-                        android:layout_weight="1"
                         android:id="@+id/paymentdate"
-                        android:fontFamily="@font/gabarito"
-                        android:textColor="@color/white"
-                        android:textSize="13sp"
-                        />
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:id="@+id/totalpayment"
+                        android:layout_weight="1"
                         android:fontFamily="@font/gabarito"
+                        android:text="YYYY-MM-DD"
                         android:textColor="@color/white"
-                        android:textSize="13sp"
-                        />
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/totalpayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gabarito"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
                 </LinearLayout>
 
 
